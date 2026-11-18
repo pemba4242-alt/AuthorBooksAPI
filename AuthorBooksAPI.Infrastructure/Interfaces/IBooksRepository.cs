@@ -8,5 +8,8 @@ namespace AuthorBooksAPI.Infrastructure.Interfaces
     public interface IBooksRepository
     {
         Task<List<Book>> GetAllAsync();
+        Task<Book?> GetByIdAsync(int id);
+
+        Task<bool> CreateAsync(Book book);
     }
 }

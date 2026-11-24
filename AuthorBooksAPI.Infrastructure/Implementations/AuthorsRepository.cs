@@ -18,12 +18,18 @@ namespace AuthorBooksAPI.Infrastructure.Implementations
 
         public async Task<List<Author>> GetAllAsync()
         {
-            return await _authorBooksAPIDbContext.Authors.Where(x => x.DeletedDate == null).ToListAsync();
+            return await _authorBooksAPIDbContext.Authors.Where(x => x.DeletedDate == null).Include(x => x.Books).ToListAsync();
         }
 
         public async Task<Author?> GetByIdAsync(int id)
         {
             return await _authorBooksAPIDbContext.Authors.Where(x => x.DeletedDate == null && x.AuthorId == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Author>> GetByIdsAsync(IEnumerable<int> ids)
+        {
+            var list = ids.ToList();
+            return await _authorBooksAPIDbContext.Authors.Where(a => list.Contains(a.AuthorId)).ToListAsync();
         }
     }
 }

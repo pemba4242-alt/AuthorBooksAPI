@@ -9,5 +9,6 @@ namespace AuthorBooksAPI.Infrastructure.Interfaces
     {
         Task<List<Author>> GetAllAsync();
         Task<Author?> GetByIdAsync(int id);
+        Task<List<Author>> GetByIdsAsync(IEnumerable<int> ids);
     }
 }

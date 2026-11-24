@@ -18,5 +18,7 @@ namespace AuthorBooksAPI.Application.DTO
         [Required]
         [Range(1900, 2026, ErrorMessage = "Published year must be between 1900 and 2026.")]
         public int PublishedYear { get; set; }
+
+        public List<int> AuthorIds { get; set; }
     }
 }

@@ -19,13 +19,18 @@ namespace AuthorBooksAPI.Application.Implementations
         public async Task<List<AuthorDto>> GetAllAsync()
         {
             var authors = await _authorsRepository.GetAllAsync();
-            return authors.Select(x => new AuthorDto
-            {
-                AuthorId = x.AuthorId,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Address = x.Address
-            }).ToList();
+            return authors.
+                Select(x => x.ToDto()).ToList();
+            
+
+            //return authors.Select(x => new AuthorDto
+            //{
+            //    AuthorId = x.AuthorId,
+            //    FirstName = x.FirstName,
+            //    LastName = x.LastName,
+            //    Address = x.Address,
+            //    Books = x.Books.Select(x => x.ToDto()).ToList()
+            //}).ToList();
 
         }
 
